@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome file</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="city-atm-rest-service">City ATM Rest Service</h1>
+<h1 id="overview">Overview</h1>
+<p>Java web application that provide a REST API to view a list of ATMs in the Dutch cities.<br>
+The web application invoke an external service to gather the data.<br>
+The data will be displayed by an html client</p>
+<h1 id="technology-stack">Technology stack</h1>
+<ul>
+<li>Spring Boot 2 (<strong>doesn’t work if deployed on tomcat 7 webapp</strong> )</li>
+<li>Spring Security</li>
+<li>Apache camel</li>
+<li>Spring Data JPA</li>
+<li>Hibernate</li>
+<li>HSQL (In Memory)</li>
+<li>JSP</li>
+<li>Bootstrap</li>
+<li>Spring MockMvc, Mockito and JUnit 5</li>
+<li>Maven 3</li>
+<li>NetBeans 8.2</li>
+<li>Jdk 8</li>
+</ul>
+<h1 id="description">Description</h1>
+<h3 id="jpa-and-hibernate-entities">JPA and Hibernate Entities</h3>
+<p>JPA Entity is defined with @Entity annotation, represent a table in your database.</p>
+<h3 id="spring-data-jpa-repositories">Spring Data JPA Repositories</h3>
+<p>Spring Data JPA contains some built-in Repository implemented common functions to work with database such as findOne, findAll, etc.</p>
+<h3 id="spring-security">Spring Security</h3>
+<p>To implement login/authentication with Spring Security, we implement org.springframework.security.core.userdetails.UserDetailsService interface<br>
+We create SecurityService to provide current logged-in user and auto login user after registration<br>
+We don’t define /login POST controller, it is provided by Spring Security</p>
+<h3 id="rest-endpoint">Rest endpoint</h3>
+<p>Spring Boot REST controller calls the Camel route.<br>
+Camel through producerTemplate calls the external service to retrieve the data.<br>
+Spring rest controller will expose the API to the front end</p>
+<h3 id="junit-test">Junit Test</h3>
+<p>@SpringExtension is been introduced in Spring 5.<br>
+Is used to integrate Spring TestContext with JUnit 5 Jupiter Test.<br>
+For the tests I used Spring MockMvc and Mockito.<br>
+MockMvc simulates the calls to the spring controller<br>
+Mockito simulates the calls to the camel service</p>
+<h3 id="installation">Installation</h3>
+<p>To start the application:</p>
+<pre class=" language-sh"><code class="prism  language-sh">mvn clean spring-boot:run
+http://localhost:8080/
+</code></pre>
+<p>To perform the tests:</p>
+<pre class=" language-sh"><code class="prism  language-sh">mvn test
+</code></pre>
+<p>To create war:</p>
+<pre class=" language-sh"><code class="prism  language-sh">mvn package
+The file will be created under the target directory
+</code></pre>
+</div>
+</body>
+
+</html>
